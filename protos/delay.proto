@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option java_package = "io.github.ahappypie.LightDelay.grpc";
+option java_outer_classname = "LightDelayProto";
+
+service LightDelay {
+    rpc GetLightDelay (LightDelayRequest) returns (LightDelayResponse) {}
+}
+
+message LightDelayRequest {
+    uint64 timestamp = 1;
+    enum Destination {
+        MARS = 0;
+        JUPITER = 1;
+        SATURN = 2;
+    }
+    Destination dest = 2;
+}
+
+message LightDelayResponse {
+    uint32 delay = 1;
+}
