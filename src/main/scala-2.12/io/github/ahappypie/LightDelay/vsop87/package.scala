@@ -1,4 +1,5 @@
-package io.github.ahappypie.LightDelay.vsop87;
+package io.github.ahappypie.LightDelay
+
 /**
  * Adapted from libnova - https://sourceforge.net/projects/libnova/
  * Commit hash 655bcd
@@ -10,4 +11,13 @@ package io.github.ahappypie.LightDelay.vsop87;
  * Every dataset is an array of tuples, namely, Array[(Double, Double, Double)]
  *
  * Helpful regex used to do some formatting: \[LONG_L\d] = \(
+ */
+
+package object vsop87 {
+
+}
+
+/**
+ * sbt note - this was originally a package-info.java file that bumped into https://github.com/sbt/sbt/issues/4665
+ * It caused ArrayIndexOutOfBounds and was solved immediately by turning it into a Scala package object
  */

@@ -1,6 +1,6 @@
 name := "light-delay"
 
-version := "0.1"
+version := "0.0.1"
 
 scalaVersion := "2.12.10"
 
@@ -16,3 +16,18 @@ libraryDependencies ++= Seq(
   "com.thesamet.scalapb" %% "scalapb-runtime-grpc" % scalapb.compiler.Version.scalapbVersion,
   "com.typesafe.akka" %% "akka-actor" % akkaVersion
 )
+
+mainClass in (Compile, run) := Some("io.github.ahappypie.LightDelay.LightDelayServer")
+
+enablePlugins(AshScriptPlugin)
+enablePlugins(JavaAppPackaging)
+enablePlugins(DockerPlugin)
+
+maintainer in Docker := "Brian Bagdasarian"
+dockerRepository := Some("quay.io")
+dockerUsername := Some("ahappypie")
+dockerBaseImage := s"openjdk:8-alpine"
+
+dockerExposedPorts := Seq(sys.env.getOrElse("GRPC_PORT", "50051").toInt)
+
+javaOptions in Universal ++= Seq("-J-XX:+UnlockExperimentalVMOptions", "-J-XX:+UseCGroupMemoryLimitForHeap")

@@ -1,4 +1,6 @@
 # light-delay
+[![Docker Repository on Quay](https://quay.io/repository/ahappypie/light-delay/status "Docker Repository on Quay")](https://quay.io/repository/ahappypie/light-delay)
+
 This server implements the astronomical calculations necessary to determine the distances (and therefore light-times) between two objects in this solar system.
 In it's most basic operation, it takes a Unix timestamp (in milliseconds) and returns the light-time (also in milliseconds).
 
@@ -11,8 +13,15 @@ In the example below, Earth and Mars are close to opposition, which means the Su
 This orbital positioning is called [Solar Conjunction](https://mars.nasa.gov/news/8506/whats-mars-solar-conjunction-and-why-does-it-matter/).
 Therefore, the results returned by this service should only be used to determine approximate linear distance between bodies in light-time.
 
-#### Operation
+### Operation
 
+#### Via Docker
+
+```bash
+docker run -p 50051:50051 --name light-delay quay.io/ahappypie/light-delay:0.0.1 
+```
+
+#### Via Source
 You must set an environment variable for the GRPC server. Typically, I set the following variable:
 ```
 GRPC_PORT=50051
@@ -50,7 +59,7 @@ returns
 This can be read as the following:
 At 2019-09-27 1832 UTC, the light delay from Earth to Mars is 1320096 milliseconds, or about 22 minutes.
 
-#### Dev
+### Dev
 Ensure `git` and `sbt` are available in your shell.
 
 Clone the repo:
