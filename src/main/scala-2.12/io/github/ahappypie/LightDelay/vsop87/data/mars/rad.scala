@@ -1,9 +1,11 @@
-package io.github.ahappypie.LightDelay.vsop87.mars
+package io.github.ahappypie.LightDelay.vsop87.data.mars
 
-object rad {
-  final val r0 = mr0.data
+import io.github.ahappypie.LightDelay.vsop87.Radius
 
-  final val r1: Array[(Double, Double, Double)] = Array(
+object rad extends Radius {
+  override val r0 = mr0.data
+
+  override val r1: Array[(Double, Double, Double)] = Array(
     (     0.01107433345,  2.03250524857,     3340.61242669980),
     (     0.00103175887,  2.37071847807,     6681.22485339960),
     (     0.00012877200,  0.00000000000,        0.00000000000),
@@ -678,7 +680,7 @@ object rad {
     (     0.00000000027,  1.32843166459,     7203.80227149340)
   )
 
-  final val r2: Array[(Double, Double, Double)] = Array(
+  override val r2: Array[(Double, Double, Double)] = Array(
     (     0.00044242249,  0.47930604954,     3340.61242669980),
     (     0.00008138042,  0.86998389204,     6681.22485339960),
     (     0.00001274915,  1.22593985222,    10021.83728009940),
@@ -1049,7 +1051,7 @@ object rad {
     (     0.00000000018,  5.05191310629,     3603.69635007260)
   )
 
-  final val r3: Array[(Double, Double, Double)] = Array(
+  override val r3: Array[(Double, Double, Double)] = Array(
     (     0.00001113108,  5.14987305093,     3340.61242669980),
     (     0.00000424447,  5.61343952053,     6681.22485339960),
     (     0.00000100044,  5.99727457548,    10021.83728009940),
@@ -1212,7 +1214,7 @@ object rad {
     (     0.00000000007,  3.67458682256,     3980.50971301380)
   )
 
-  final val r4: Array[(Double, Double, Double)] = Array(
+  override val r4: Array[(Double, Double, Double)] = Array(
     (     0.00000019551,  3.58210746512,     3340.61242669980),
     (     0.00000016322,  4.05115851142,     6681.22485339960),
     (     0.00000005848,  4.46381646580,    10021.83728009940),
@@ -1272,7 +1274,7 @@ object rad {
     (     0.00000000004,  4.02001405595,     3333.49887969900)
   )
 
-  final val r5: Array[(Double, Double, Double)] = Array(
+  override val r5: Array[(Double, Double, Double)] = Array(
     (     0.00000000475,  2.47621038205,     6681.22485339960),
     (     0.00000000270,  2.90961348988,    10021.83728009940),
     (     0.00000000116,  1.76766655427,     3340.61242669980),

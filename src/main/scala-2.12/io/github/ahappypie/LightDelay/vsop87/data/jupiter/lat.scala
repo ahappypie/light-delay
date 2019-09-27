@@ -1,7 +1,9 @@
-package io.github.ahappypie.LightDelay.vsop87.jupiter
+package io.github.ahappypie.LightDelay.vsop87.data.jupiter
 
-object lat {
-  final val b0: Array[(Double, Double, Double)] = Array(
+import io.github.ahappypie.LightDelay.vsop87.Latitude
+
+object lat extends Latitude {
+  override val b0: Array[(Double, Double, Double)] = Array(
     (     0.02268615702,  3.55852606721,      529.69096509460),
     (     0.00109971634,  3.90809347197,     1059.38193018920),
     (     0.00110090358,  0.00000000000,        0.00000000000),
@@ -253,7 +255,7 @@ object lat {
     (     0.00000000095,  1.66457947000,     1151.42900414390)
   )
 
-  final val b1: Array[(Double, Double, Double)] = Array(
+  override val b1: Array[(Double, Double, Double)] = Array(
     (     0.00078203446,  1.52377859742,      529.69096509460),
     (     0.00007789905,  2.59734071843,     1059.38193018920),
     (     0.00002788602,  4.85622679819,      536.80451209540),
@@ -376,7 +378,7 @@ object lat {
     (     0.00000000087,  4.53831014475,     1148.24761040620)
   )
 
-  final val b2: Array[(Double, Double, Double)] = Array(
+  override val b2: Array[(Double, Double, Double)] = Array(
     (     0.00005498320,  3.01596270062,      529.69096509460),
     (     0.00000602076,  3.13358939436,      536.80451209540),
     (     0.00000502174,  2.05202111599,     1059.38193018920),
@@ -461,7 +463,7 @@ object lat {
     (     0.00000000077,  3.87925580596,     1603.29998928540)
   )
 
-  final val b3: Array[(Double, Double, Double)] = Array(
+  override val b3: Array[(Double, Double, Double)] = Array(
     (     0.00000185332,  4.79276761490,      529.69096509460),
     (     0.00000085668,  1.40023038638,      536.80451209540),
     (     0.00000056359,  2.81574766965,      522.57741809380),
@@ -497,7 +499,7 @@ object lat {
     (     0.00000000082,  5.02874146441,      956.28915597060)
   )
 
-  final val b4: Array[(Double, Double, Double)] = Array(
+  override val b4: Array[(Double, Double, Double)] = Array(
     (     0.00000008963,  5.93887232380,      536.80451209540),
     (     0.00000005280,  4.80778878768,      522.57741809380),
     (     0.00000001161,  0.46295890438,     1066.49547719000),
@@ -513,7 +515,7 @@ object lat {
     (     0.00000000077,  3.58780641570,     1045.15483618760)
   )
 
-  final val b5: Array[(Double, Double, Double)] = Array(
+  override val b5: Array[(Double, Double, Double)] = Array(
     (     0.00000000662,  4.10413626462,      536.80451209540),
     (     0.00000000431,  0.82614663721,      522.57741809380),
     (     0.00000000208,  0.05498457769,      515.46387109300)

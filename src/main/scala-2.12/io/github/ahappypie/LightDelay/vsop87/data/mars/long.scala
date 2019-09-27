@@ -1,9 +1,11 @@
-package io.github.ahappypie.LightDelay.vsop87.mars
+package io.github.ahappypie.LightDelay.vsop87.data.mars
 
-object long {
-  final val l0 = ml0.data
+import io.github.ahappypie.LightDelay.vsop87.Longitude
 
-  final val l1: Array[(Double, Double, Double)] = Array(
+object long extends Longitude {
+  override val l0 = ml0.data
+
+  override val l1: Array[(Double, Double, Double)] = Array(
     (  3340.61242700512,  0.00000000000,        0.00000000000),
     (     0.01457554523,  3.60433733236,     3340.61242669980),
     (     0.00168414711,  3.92318567804,     6681.22485339960),
@@ -897,7 +899,7 @@ object long {
     (     0.00000000018,  0.05420901908,     2142.64229812620)
   )
 
-  final val l2: Array[(Double, Double, Double)] = Array(
+  override val l2: Array[(Double, Double, Double)] = Array(
     (     0.00058152577,  2.04961712429,     3340.61242669980),
     (     0.00013459579,  2.45738706163,     6681.22485339960),
     (     0.00002432575,  2.79737979284,    10021.83728009940),
@@ -1342,7 +1344,7 @@ object long {
     (     0.00000000009,  1.77145376267,    32367.09765620760)
   )
 
-  final val l3: Array[(Double, Double, Double)] = Array(
+  override val l3: Array[(Double, Double, Double)] = Array(
     (     0.00001467867,  0.44429839460,     3340.61242669980),
     (     0.00000692668,  0.88679887123,     6681.22485339960),
     (     0.00000189478,  1.28336839921,    10021.83728009940),
@@ -1539,7 +1541,7 @@ object long {
     (     0.00000000005,  4.69029931558,     2700.71514038580)
   )
 
-  final val l4: Array[(Double, Double, Double)] = Array(
+  override val l4: Array[(Double, Double, Double)] = Array(
     (     0.00000027242,  5.63997742320,     6681.22485339960),
     (     0.00000025511,  5.13956279086,     3340.61242669980),
     (     0.00000011147,  6.03556608878,    10021.83728009940),
@@ -1617,7 +1619,7 @@ object long {
     (     0.00000000002,  0.01141937510,    10551.52824519400)
   )
 
-  final val l5: Array[(Double, Double, Double)] = Array(
+  override val l5: Array[(Double, Double, Double)] = Array(
     (     0.00000000762,  4.03556368806,     6681.22485339960),
     (     0.00000000511,  4.48770393640,    10021.83728009940),
     (     0.00000000360,  5.07296615717,      155.42039943420),

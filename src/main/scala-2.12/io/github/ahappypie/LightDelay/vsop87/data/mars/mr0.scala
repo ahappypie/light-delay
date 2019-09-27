@@ -1,4 +1,4 @@
-package io.github.ahappypie.LightDelay.vsop87.mars
+package io.github.ahappypie.LightDelay.vsop87.data.mars
 
 private object mr0 {
   final val data: Array[(Double, Double, Double)] = Array(

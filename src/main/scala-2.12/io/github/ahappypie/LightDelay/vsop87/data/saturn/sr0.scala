@@ -1,4 +1,4 @@
-package io.github.ahappypie.LightDelay.vsop87.saturn
+package io.github.ahappypie.LightDelay.vsop87.data.saturn
 
 private object sr0 {
   final val data: Array[(Double, Double, Double)] = Array(

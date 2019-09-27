@@ -1,7 +1,9 @@
-package io.github.ahappypie.LightDelay.vsop87.jupiter
+package io.github.ahappypie.LightDelay.vsop87.data.jupiter
 
-object long {
-  final val l0: Array[(Double, Double, Double)] = Array(
+import io.github.ahappypie.LightDelay.vsop87.Longitude
+
+object long extends Longitude {
+  override val l0: Array[(Double, Double, Double)] = Array(
     (     0.59954691494,  0.00000000000,        0.00000000000),
     (     0.09695898719,  5.06191793158,      529.69096509460),
     (     0.00573610142,  1.44406205629,        7.11354700080),
@@ -864,7 +866,7 @@ object long {
     (     0.00000000081,  5.76205552882,      617.80588578620),
   )
 
-  final val l1: Array[(Double, Double, Double)] = Array(
+  override val l1: Array[(Double, Double, Double)] = Array(
     (   529.69096508814,  0.00000000000,        0.00000000000),
     (     0.00489503243,  4.22082939470,      529.69096509460),
     (     0.00228917222,  6.02646855621,        7.11354700080),
@@ -1293,7 +1295,7 @@ object long {
     (     0.00000000085,  5.88100684593,      234.63973644040)
   )
 
-  final val l2: Array[(Double, Double, Double)] = Array(
+  override val l2: Array[(Double, Double, Double)] = Array(
     (     0.00047233601,  4.32148536482,        7.11354700080),
     (     0.00030649436,  2.92977788700,      529.69096509460),
     (     0.00014837605,  3.14159265359,        0.00000000000),
@@ -1521,7 +1523,7 @@ object long {
     (     0.00000000083,  0.25202430423,     2644.52267220990)
   )
 
-  final val l3: Array[(Double, Double, Double)] = Array(
+  override val l3: Array[(Double, Double, Double)] = Array(
     (     0.00006501673,  2.59862923650,        7.11354700080),
     (     0.00001355012,  1.34692775915,      529.69096509460),
     (     0.00000470691,  2.47502798748,       14.22709400160),
@@ -1644,7 +1646,7 @@ object long {
     (     0.00000000079,  3.80336766578,     1603.29998928540)
   )
 
-  final val l4: Array[(Double, Double, Double)] = Array(
+  override val l4: Array[(Double, Double, Double)] = Array(
     (     0.00000669505,  0.85280378158,        7.11354700080),
     (     0.00000099965,  0.74243651986,       14.22709400160),
     (     0.00000050030,  1.65383477095,      536.80451209540),
@@ -1695,7 +1697,7 @@ object long {
     (     0.00000000077,  3.29690316802,     1368.66025284500)
   )
 
-  final val l5: Array[(Double, Double, Double)] = Array(
+  override val l5: Array[(Double, Double, Double)] = Array(
     (     0.00000049639,  5.25769924770,        7.11354700080),
     (     0.00000015775,  5.24859620238,       14.22709400160),
     (     0.00000004326,  0.02660738929,      536.80451209540),

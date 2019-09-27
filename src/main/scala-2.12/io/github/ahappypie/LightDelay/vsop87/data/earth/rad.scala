@@ -1,7 +1,9 @@
-package io.github.ahappypie.LightDelay.vsop87.earth
+package io.github.ahappypie.LightDelay.vsop87.data.earth
 
-object rad {
-  final val r0: Array[(Double, Double, Double)] = Array(
+import io.github.ahappypie.LightDelay.vsop87.Radius
+
+object rad extends Radius {
+  override val r0: Array[(Double, Double, Double)] = Array(
     (     1.00013988784,  0.00000000000,        0.00000000000),
     (     0.01670699632,  3.09846350258,     6283.07584999140),
     (     0.00013956024,  3.05524609456,    12566.15169998280),
@@ -527,7 +529,7 @@ object rad {
     (     0.00000000050,  6.15760345261,    78051.34191383338)
   )
 
-  final val r1: Array[(Double, Double, Double)] = Array(
+  override val r1: Array[(Double, Double, Double)] = Array(
     (     0.00103018607,  1.10748968172,     6283.07584999140),
     (     0.00001721238,  1.06442300386,    12566.15169998280),
     (     0.00000702217,  3.14159265359,        0.00000000000),
@@ -820,7 +822,7 @@ object rad {
     (     0.00000000020,  5.91915117116,    48739.85989708300)
   )
 
-  final val r2: Array[(Double, Double, Double)] = Array(
+  override val r2: Array[(Double, Double, Double)] = Array(
     (     0.00004359385,  5.78455133808,     6283.07584999140),
     (     0.00000123633,  5.57935427994,    12566.15169998280),
     (     0.00000012342,  3.14159265359,        0.00000000000),
@@ -957,7 +959,7 @@ object rad {
     (     0.00000000014,  4.50116508534,      640.87760738220)
   )
 
-  final val r3: Array[(Double, Double, Double)] = Array(
+  override val r3: Array[(Double, Double, Double)] = Array(
     (     0.00000144595,  4.27319433901,     6283.07584999140),
     (     0.00000006729,  3.91706261708,    12566.15169998280),
     (     0.00000000774,  0.00000000000,        0.00000000000),
@@ -980,7 +982,7 @@ object rad {
     (     0.00000000006,  2.36514111314,     6836.64525283380)
   )
 
-  final val r4: Array[(Double, Double, Double)] = Array(
+  override val r4: Array[(Double, Double, Double)] = Array(
     (     0.00000003858,  2.56389016346,     6283.07584999140),
     (     0.00000000306,  2.26911740541,    12566.15169998280),
     (     0.00000000053,  3.44031471924,     5573.14280143310),
@@ -992,7 +994,7 @@ object rad {
     (     0.00000000004,  4.26602478239,     6127.65545055720)
   )
 
-  final val r5: Array[(Double, Double, Double)] = Array(
+  override val r5: Array[(Double, Double, Double)] = Array(
     (     0.00000000086,  1.21805304895,     6283.07584999140),
     (     0.00000000012,  0.65572878044,    12566.15169998280)
   )
