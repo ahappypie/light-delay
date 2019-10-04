@@ -17,7 +17,7 @@ message LightDelayRequest {
         SATURN = 4;
     }
     Body origin = 2;
-    Body dest = 3;
+    Body destination = 3;
 }
 
 message LightDelayResponse {

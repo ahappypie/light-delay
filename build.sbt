@@ -10,11 +10,15 @@ PB.targets in Compile := Seq(
 PB.protoSources in Compile := Seq(baseDirectory.value / "protos")
 
 lazy val akkaVersion = "2.5.25"
+lazy val akkaHttpVersion = "10.1.10"
 
 libraryDependencies ++= Seq(
   "io.grpc" % "grpc-netty" % scalapb.compiler.Version.grpcJavaVersion,
   "com.thesamet.scalapb" %% "scalapb-runtime-grpc" % scalapb.compiler.Version.scalapbVersion,
-  "com.typesafe.akka" %% "akka-actor" % akkaVersion
+  "com.typesafe.akka" %% "akka-actor" % akkaVersion,
+  "com.typesafe.akka" %% "akka-stream" % akkaVersion,
+  "com.typesafe.akka" %% "akka-http"   % akkaHttpVersion,
+  "com.typesafe.akka" %% "akka-http-spray-json" % akkaHttpVersion
 )
 
 mainClass in (Compile, run) := Some("io.github.ahappypie.LightDelay.LightDelayServer")

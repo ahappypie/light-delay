@@ -21,25 +21,19 @@ class DelayActor extends Actor {
   }
 
   def process(request: LightDelayRequest): Int = {
-    var origin: Option[VSOPDataset] = None
-    var destination: Option[VSOPDataset] = None
-
-    request.origin.name match {
-      case "EARTH" => origin = Some(earth)
-      case "MARS" => origin = Some(mars)
-      case "JUPITER" => origin = Some(jupiter)
-      case "SATURN" => origin = Some(saturn)
-      case _ => None
-    }
-
-    request.dest.name match {
-      case "EARTH" => destination = Some(earth)
-      case "MARS" => destination = Some(mars)
-      case "JUPITER" => destination = Some(jupiter)
-      case "SATURN" => destination = Some(saturn)
-      case _ => None
-    }
+    val origin: Option[VSOPDataset] = getBody(request.origin.name)
+    val destination: Option[VSOPDataset] = getBody(request.destination.name)
 
     delay(origin.getOrElse(earth), destination.getOrElse(mars), request.timestamp)
+  }
+
+  def getBody(b: String): Option[VSOPDataset] =  {
+    b match {
+      case "EARTH" => Some(earth)
+      case "MARS" => Some(mars)
+      case "JUPITER" => Some(jupiter)
+      case "SATURN" => Some(saturn)
+      case _ => None
+    }
   }
 }
