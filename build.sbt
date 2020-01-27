@@ -9,7 +9,7 @@ PB.targets in Compile := Seq(
 )
 PB.protoSources in Compile := Seq(baseDirectory.value / "protos")
 
-lazy val akkaVersion = "2.5.25"
+lazy val akkaVersion = "2.5.28"
 
 libraryDependencies ++= Seq(
   "io.grpc" % "grpc-netty" % scalapb.compiler.Version.grpcJavaVersion,
