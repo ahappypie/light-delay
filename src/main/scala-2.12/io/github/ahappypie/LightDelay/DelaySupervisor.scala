@@ -2,7 +2,7 @@ package io.github.ahappypie.LightDelay
 
 import akka.actor.{Actor, Props}
 
-import io.github.ahappypie.LightDelay.grpc.delay.LightDelayRequest
+import io.github.ahappypie.LightDelay.grpc.LightDelayRequest
 
 object DelaySupervisor {
   def props: Props = Props(new DelaySupervisor)

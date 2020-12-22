@@ -4,7 +4,15 @@ version := "0.0.1"
 
 scalaVersion := "2.12.10"
 
-PB.targets in Compile := Seq(
+enablePlugins(AkkaGrpcPlugin)
+akkaGrpcGeneratedLanguages := Seq(AkkaGrpc.Scala)
+akkaGrpcGeneratedSources := Seq(AkkaGrpc.Server)
+
+inConfig(Compile)(Seq(
+  PB.protoSources += baseDirectory.value / "protos"
+))
+
+/*PB.targets in Compile := Seq(
   scalapb.gen() -> (sourceManaged in Compile).value
 )
 PB.protoSources in Compile := Seq(baseDirectory.value / "protos")
@@ -16,7 +24,7 @@ libraryDependencies ++= Seq(
   "com.thesamet.scalapb" %% "scalapb-runtime-grpc" % scalapb.compiler.Version.scalapbVersion,
   "com.typesafe.akka" %% "akka-actor" % akkaVersion
 )
-
+*/
 mainClass in (Compile, run) := Some("io.github.ahappypie.LightDelay.LightDelayServer")
 
 enablePlugins(AshScriptPlugin)

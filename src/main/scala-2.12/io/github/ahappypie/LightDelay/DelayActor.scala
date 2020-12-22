@@ -3,7 +3,7 @@ package io.github.ahappypie.LightDelay
 import vsop87.functions._
 import vsop87.{VSOPDataset, mercury, venus, earth, mars, jupiter, saturn, uranus, neptune}
 import akka.actor.{Actor, Props}
-import io.github.ahappypie.LightDelay.grpc.delay.{LightDelayRequest, LightDelayResponse}
+import io.github.ahappypie.LightDelay.grpc.{LightDelayRequest, LightDelayResponse}
 
 /**
   * Inspired by Emory Department of Physics
