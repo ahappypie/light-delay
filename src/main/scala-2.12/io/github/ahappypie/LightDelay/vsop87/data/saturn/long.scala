@@ -3,7 +3,7 @@ package io.github.ahappypie.LightDelay.vsop87.data.saturn
 import io.github.ahappypie.LightDelay.vsop87.Longitude
 
 object long extends Longitude {
-  override val l0 = sl0.data
+  override val l0: Array[(Double, Double, Double)] = sl0.data
 
   override val l1: Array[(Double, Double, Double)] = Array(
     (   213.29909521690,  0.00000000000,        0.00000000000),

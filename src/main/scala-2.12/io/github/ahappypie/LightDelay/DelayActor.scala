@@ -1,7 +1,7 @@
 package io.github.ahappypie.LightDelay
 
 import vsop87.functions._
-import vsop87.{VSOPDataset, earth, jupiter, mars, saturn}
+import vsop87.{VSOPDataset, mercury, venus, earth, mars, jupiter, saturn, uranus, neptune}
 import akka.actor.{Actor, Props}
 import io.github.ahappypie.LightDelay.grpc.delay.{LightDelayRequest, LightDelayResponse}
 
@@ -21,25 +21,33 @@ class DelayActor extends Actor {
   }
 
   def process(request: LightDelayRequest): Int = {
-    var origin: Option[VSOPDataset] = None
-    var destination: Option[VSOPDataset] = None
-
-    request.origin.name match {
-      case "EARTH" => origin = Some(earth)
-      case "MARS" => origin = Some(mars)
-      case "JUPITER" => origin = Some(jupiter)
-      case "SATURN" => origin = Some(saturn)
-      case _ => None
-    }
-
-    request.dest.name match {
-      case "EARTH" => destination = Some(earth)
-      case "MARS" => destination = Some(mars)
-      case "JUPITER" => destination = Some(jupiter)
-      case "SATURN" => destination = Some(saturn)
-      case _ => None
-    }
+    val origin: Option[VSOPDataset] = convertToDataset(request.origin)
+    val destination: Option[VSOPDataset] = convertToDataset(request.dest)
 
     delay(origin.getOrElse(earth), destination.getOrElse(mars), request.timestamp)
+  }
+
+  private def convertToDataset(body: LightDelayRequest.Body): Option[VSOPDataset] = {
+    if(body.isUnknownPlanet) {
+      None
+    } else if(body.isMercury) {
+      Some(mercury)
+    } else if(body.isVenus) {
+      Some(venus)
+    } else if(body.isEarth) {
+      Some(earth)
+    } else if(body.isMars) {
+      Some(mars)
+    } else if(body.isJupiter) {
+      Some(jupiter)
+    } else if(body.isSaturn) {
+      Some(saturn)
+    }else if(body.isUranus) {
+      Some(uranus)
+    } else if(body.isNeptune) {
+      Some(neptune)
+    } else {
+      None
+    }
   }
 }

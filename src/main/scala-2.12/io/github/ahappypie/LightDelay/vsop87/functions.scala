@@ -67,14 +67,14 @@ object functions {
 
   def delay(origin: VSOPDataset, destination: VSOPDataset, timestamp: Long): Int = {
     val jd = julianDate(timestamp)
-    val ori = helio(origin, jd)
-    val dest = helio(destination, jd)
+    val ori = origin.helio(origin, jd)
+    val dest = destination.helio(destination, jd)
     val d = distance(ori, dest, jd)
     val lt = lightTime(d)
 
     val jd2 = jd - lt
-    val ori2 = helio(origin, jd2)
-    val dest2 = helio(destination, jd2)
+    val ori2 = origin.helio(origin, jd2)
+    val dest2 = destination.helio(destination, jd2)
     val d2 = distance(ori2, dest2, jd2)
     val lt2 = lightTime(d2)
 

@@ -11,10 +11,14 @@ message LightDelayRequest {
     uint64 timestamp = 1;
     enum Body {
         UNKNOWN_PLANET = 0;
-        EARTH = 1;
-        MARS = 2;
-        JUPITER = 3;
-        SATURN = 4;
+        MERCURY = 1;
+        VENUS = 2;
+        EARTH = 3;
+        MARS = 4;
+        JUPITER = 5;
+        SATURN = 6;
+        URANUS = 7;
+        NEPTUNE = 8;
     }
     Body origin = 2;
     Body dest = 3;
