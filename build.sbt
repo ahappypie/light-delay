@@ -1,8 +1,8 @@
 name := "light-delay"
 
-version := "0.0.1"
+version := "0.1.0"
 
-scalaVersion := "2.12.10"
+scalaVersion := "2.12.12"
 
 enablePlugins(AkkaGrpcPlugin)
 akkaGrpcGeneratedLanguages := Seq(AkkaGrpc.Scala)
@@ -25,6 +25,11 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-actor" % akkaVersion
 )
 */
+
+libraryDependencies ++= Seq (
+  "ch.megard" %% "akka-http-cors" % "0.4.2"
+)
+
 mainClass in (Compile, run) := Some("io.github.ahappypie.LightDelay.LightDelayServer")
 
 enablePlugins(AshScriptPlugin)
@@ -34,8 +39,8 @@ enablePlugins(DockerPlugin)
 maintainer in Docker := "Brian Bagdasarian"
 dockerRepository := Some("quay.io")
 dockerUsername := Some("ahappypie")
-dockerBaseImage := s"openjdk:8-alpine"
+dockerBaseImage := s"openjdk:11.0.9.1-jre-buster"
 
-dockerExposedPorts := Seq(sys.env.getOrElse("GRPC_PORT", "50051").toInt)
+//dockerExposedPorts := Seq(sys.env.getOrElse("GRPC_PORT", "50051").toInt)
 
-javaOptions in Universal ++= Seq("-J-XX:+UnlockExperimentalVMOptions", "-J-XX:+UseCGroupMemoryLimitForHeap")
+//javaOptions in Universal ++= Seq("-J-XX:+UnlockExperimentalVMOptions", "-J-XX:+UseCGroupMemoryLimitForHeap")

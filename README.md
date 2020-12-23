@@ -18,16 +18,20 @@ Therefore, the results returned by this service should only be used to determine
 #### Via Docker
 
 ```bash
-docker run -p 50051:50051 --name light-delay quay.io/ahappypie/light-delay:0.0.1 
+docker run -p 50050:50050 --name light-delay quay.io/ahappypie/light-delay:0.1.0
 ```
 
 #### Via Source
-You must set an environment variable for the GRPC server. Typically, I set the following variable:
+You can set an environment variable for the GRPC server. It defaults to:
 ```
-GRPC_PORT=50051
+GRPC_PORT=50050
 ```
-If you do not set a port, it will default to 50051.
-
+You can also enable and configure a separate GRPC Web endpoint:
+```
+SERVE_WEB=true
+GRPC_WEB_PORT=50051
+```
+By default the web endpoint will not start.
 #### Endpoints
 There is one service and two methods as defined in the protofile:
 
@@ -119,4 +123,8 @@ sbt compile
 To run, use the default sbt command:
 ```bash
 sbt run
+```
+Build the container with:
+```bash
+sbt docker
 ```

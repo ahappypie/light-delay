@@ -2,6 +2,7 @@ package io.github.ahappypie.LightDelay
 
 import java.util.logging.Logger
 import akka.actor.{ActorRef, ActorSystem}
+import akka.grpc.scaladsl.WebHandler
 import akka.http.scaladsl.{Http, HttpConnectionContext}
 import akka.http.scaladsl.model.{HttpRequest, HttpResponse}
 import akka.pattern.ask
@@ -21,32 +22,47 @@ object LightDelayServer {
       .parseString("akka.http.server.preview.enable-http2 = on")
       .withFallback(ConfigFactory.defaultApplication())
     val actorSystem = ActorSystem("light-delay-system", conf)
-    val port: Int = sys.env.getOrElse("GRPC_PORT", "50051").toInt
-    new LightDelayServer(actorSystem, port).run()
+    val server = new LightDelayServer(actorSystem)
+    server.run(sys.env.getOrElse("SERVE_WEB", "false").toBoolean)
   }
 
 }
 
-class LightDelayServer(actorSystem: ActorSystem, port: Int) {
+class LightDelayServer(actorSystem: ActorSystem) {
+  implicit val system: ActorSystem = actorSystem
+  implicit val mat: Materializer = ActorMaterializer()
+  implicit val ec: ExecutionContext = system.dispatcher
 
-  def run(): Future[Http.ServerBinding] = {
-    implicit val sys: ActorSystem = actorSystem
-    implicit val mat: Materializer = ActorMaterializer()
-    implicit val ec: ExecutionContext = sys.dispatcher
-
+  def run(web: Boolean = false): Future[Http.ServerBinding] = {
     // Create service handlers
-    val service: HttpRequest => Future[HttpResponse] =
-      LightDelayHandler(new LightDelayImpl())
-
-    // Bind service handler servers to localhost:8080/8081
+    val service: PartialFunction[HttpRequest, Future[HttpResponse]] =
+      LightDelayHandler.partial(new LightDelayImpl())
+    // Bind service handler servers
     val binding = Http().bindAndHandleAsync(
       service,
-      interface = "127.0.0.1",
-      port,
+      interface = "0.0.0.0",
+      sys.env.getOrElse("GRPC_PORT", "50050").toInt,
       connectionContext = HttpConnectionContext())
+
+    if(web) { runWeb(service) }
 
     // report successful binding
     binding.foreach { binding => println(s"gRPC server bound to: ${binding.localAddress}") }
+
+    binding
+  }
+
+  private def runWeb(service: PartialFunction[HttpRequest, Future[HttpResponse]]): Future[Http.ServerBinding] = {
+    val webHandler = WebHandler.grpcWebHandler(service)
+
+    val binding = Http().bindAndHandleAsync(
+      webHandler,
+      interface = "0.0.0.0",
+      sys.env.getOrElse("GRPC_WEB_PORT", "50051").toInt,
+      connectionContext = HttpConnectionContext())
+
+    // report successful binding
+    binding.foreach { binding => println(s"gRPC Web server bound to: ${binding.localAddress}") }
 
     binding
   }
