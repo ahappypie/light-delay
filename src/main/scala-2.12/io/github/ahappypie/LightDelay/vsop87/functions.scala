@@ -7,7 +7,7 @@ object functions {
     val date = LocalDateTime.ofInstant(Instant.ofEpochMilli(timestamp), ZoneId.of("Z"))
     var year = date.getYear
     var month = date.getMonthValue
-    if(month < 3) {
+    if (month < 3) {
       year = year - 1
       month = month + 12
     }
@@ -16,27 +16,27 @@ object functions {
     val min = date.getMinute
     val sec = date.getSecond
 
-    val A = year/100
-    val B = 2 - A + (A/4)
-    val E = (hour/24) + (min/1440) + (sec/(8.64*Math.pow(10,4)))
+    val A = year / 100
+    val B = 2 - A + (A / 4)
+    val E = (hour / 24) + (min / 1440) + (sec / (8.64 * Math.pow(10, 4)))
 
-    (365.25 * (year+4716)) + (30.6001*(month+1)) + day + B - 1524.5 + E
+    (365.25 * (year + 4716)) + (30.6001 * (month + 1)) + day + B - 1524.5 + E
   }
 
   def calc_series(array: Array[(Double, Double, Double)], t: Double): Double = {
     var value = 0.0
-    for(tuple <- array) {
-      value += tuple._1 * Math.cos(tuple._2 + (tuple._3*t))
+    for (tuple <- array) {
+      value += tuple._1 * Math.cos(tuple._2 + (tuple._3 * t))
     }
     value
   }
 
   def helio(planet: VSOPDataset, jd: Double): (Double, Double, Double) = {
-    val t = (jd - 2451545.0)/365250.0
-    val t2 = t*t
-    val t3 = t2*t
-    val t4 = t3*t
-    val t5 = t4*t
+    val t = (jd - 2451545.0) / 365250.0
+    val t2 = t * t
+    val t3 = t2 * t
+    val t4 = t3 * t
+    val t5 = t4 * t
 
     val L0 = calc_series(planet.long.l0, t)
     val L1 = calc_series(planet.long.l1, t)
@@ -62,7 +62,7 @@ object functions {
     val R5 = calc_series(planet.rad.r5, t)
     val R = (R0 + R1 * t + R2 * t2 + R3 * t3 + R4 * t4 + R5 * t5)
 
-    (L,B,R)
+    (L, B, R)
   }
 
   def delay(origin: VSOPDataset, destination: VSOPDataset, timestamp: Long): Int = {
@@ -88,7 +88,7 @@ object functions {
     val y = (mars._3 * Math.cos(mars._2) * Math.sin(mars._1)) - (earth._3 * Math.sin(earth._1) * Math.cos(earth._2))
     val z = (mars._3 * Math.sin(mars._2)) - (earth._3 * Math.sin(earth._2))
 
-    val t = (jd - 2451545.0)/365250.0
+    val t = (jd - 2451545.0) / 365250.0
     val Q = 3.8048177 + (8399.711184 * t)
     val u = x - (Math.cos(Q) * 0.0000312)
     val v = y - (Math.sin(Q) * 0.0000286)
@@ -96,8 +96,20 @@ object functions {
 
     Math.sqrt(Math.pow(u, 2) + Math.pow(v, 2) + Math.pow(w, 2))
   }
+
   //In days
   def lightTime(distance: Double): Double = {
     distance * .0057755183
   }
+
+  val registeredDatasets: Map[Int, VSOPDataset] = Map(
+    1 -> mercury,
+    2 -> venus,
+    3 -> earth,
+    4 -> mars,
+    5 -> jupiter,
+    6 -> saturn,
+    7 -> uranus,
+    8 -> neptune
+  )
 }

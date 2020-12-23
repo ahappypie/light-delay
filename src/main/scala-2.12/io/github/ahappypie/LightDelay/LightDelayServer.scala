@@ -8,7 +8,7 @@ import akka.pattern.ask
 import akka.stream.{ActorMaterializer, Materializer}
 import akka.util.Timeout
 import com.typesafe.config.ConfigFactory
-import io.github.ahappypie.LightDelay.grpc.{LightDelay, LightDelayHandler, LightDelayRequest, LightDelayResponse}
+import io.github.ahappypie.LightDelay.grpc.{AllRequest, AllResponse, LightDelay, LightDelayHandler, SingleRequest, SingleResponse}
 
 import scala.concurrent.{ExecutionContext, Future}
 import scala.concurrent.duration._
@@ -54,8 +54,12 @@ class LightDelayServer(actorSystem: ActorSystem) {
     implicit val timeout: Timeout = Timeout(5 seconds)
     val delaySupervisor: ActorRef = actorSystem.actorOf(DelaySupervisor.props, "delay-supervisor")
 
-    override def getLightDelay(req: LightDelayRequest): Future[LightDelayResponse] = {
-      delaySupervisor.ask(req).mapTo[LightDelayResponse]
+    override def getSingleDelay(req: SingleRequest): Future[SingleResponse] = {
+      delaySupervisor.ask(req).mapTo[SingleResponse]
+    }
+
+    override def getAllDelay(req: AllRequest): Future[AllResponse] = {
+      delaySupervisor.ask(req).mapTo[AllResponse]
     }
   }
 
