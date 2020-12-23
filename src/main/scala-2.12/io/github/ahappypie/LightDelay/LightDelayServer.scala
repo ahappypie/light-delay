@@ -21,12 +21,13 @@ object LightDelayServer {
       .parseString("akka.http.server.preview.enable-http2 = on")
       .withFallback(ConfigFactory.defaultApplication())
     val actorSystem = ActorSystem("light-delay-system", conf)
-    new LightDelayServer(actorSystem).run()
+    val port: Int = sys.env.getOrElse("GRPC_PORT", "50051").toInt
+    new LightDelayServer(actorSystem, port).run()
   }
 
 }
 
-class LightDelayServer(actorSystem: ActorSystem) {
+class LightDelayServer(actorSystem: ActorSystem, port: Int) {
 
   def run(): Future[Http.ServerBinding] = {
     implicit val sys: ActorSystem = actorSystem
@@ -41,7 +42,7 @@ class LightDelayServer(actorSystem: ActorSystem) {
     val binding = Http().bindAndHandleAsync(
       service,
       interface = "127.0.0.1",
-      port = 50000,
+      port,
       connectionContext = HttpConnectionContext())
 
     // report successful binding
