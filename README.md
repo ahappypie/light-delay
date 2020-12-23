@@ -29,18 +29,18 @@ GRPC_PORT=50051
 If you do not set a port, it will default to 50051.
 
 #### Endpoints
-There is one service and method as defined in the protofile:
+There is one service and two methods as defined in the protofile:
 
-```LightDelay.GetLightDelay``` -  requires parameter ```timestamp```, the Unix timestamp (in milliseconds) you would like to know the light delay for. 
-Returns light delay in milliseconds. 
+```LightDelay.GetSingleDelay``` -  requires parameter ```timestamp```, the Unix timestamp (in milliseconds) you would like to know the light delay for. 
+Returns light delay in milliseconds between the specified orbital bodies. 
 
-Optionally add parameters ```origin``` and  ```dest```, one of ```EARTH | MARS | JUPITER | SATURN```, and the delay will be for the specified origin/destination combination. 
+Optionally add parameters ```origin``` and  ```dest```, one of ```MERCURY | VENUS | EARTH | MARS | JUPITER | SATURN | URANUS | NEPTUNE```, and the delay will be for the specified origin/destination combination. 
 
 Origin defaults to ```EARTH``` if none is given.
 
 Destination defaults to ```MARS``` if none is given.
 
-Origin and destination must be in all uppercase.
+Origin and destination must be in all uppercase (or use the orbital position, where Mercury = 1).
 
 I use [BloomRPC](https://github.com/uw-labs/bloomrpc) to quickly test against the protofile. This is a sample JSON input and expected response:
 ```json
@@ -59,6 +59,51 @@ returns
 This can be read as the following:
 At 2019-09-27 1832 UTC, the light delay from Earth to Mars is 1320096 milliseconds, or about 22 minutes.
 
+```LightDelay.GetAllDelay``` -  requires parameter ```timestamp```, the Unix timestamp (in milliseconds) you would like to know the light delay for.
+Returns light delay in milliseconds between the specified orbital body and all other bodies in the dataset.
+
+So,
+```json
+{
+  "timestamp": 1569609169337,
+  "origin": 3
+}
+```
+returns
+```json
+{
+  "entries": [
+    {
+      "body": "MERCURY",
+      "delay": 652394
+    },
+    {
+      "body": "VENUS",
+      "delay": 834150
+    },
+    {
+      "body": "MARS",
+      "delay": 1320096
+    },
+    {
+      "body": "JUPITER",
+      "delay": 2724138
+    },
+    {
+      "body": "SATURN",
+      "delay": 4903029
+    },
+    {
+      "body": "URANUS",
+      "delay": 9465673
+    },
+    {
+      "body": "NEPTUNE",
+      "delay": 14459211
+    }
+  ]
+}
+```
 ### Dev
 Ensure `git` and `sbt` are available in your shell.
 
