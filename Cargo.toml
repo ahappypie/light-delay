@@ -1,0 +1,15 @@
+[package]
+name = "light-delay"
+version = "0.2.0"
+edition = "2021"
+
+[dependencies]
+hifitime = "3.8.0"
+pbjson = "0.5.1"
+prost = "0.11.8"
+serde = "1.0.159"
+tokio = { version = "1.27.0", features = ["rt-multi-thread"] }
+tonic = "0.9.1"
+vsop87 = "2.1.0"
+
+[workspace]
